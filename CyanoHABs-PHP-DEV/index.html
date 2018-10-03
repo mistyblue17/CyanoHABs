@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <!-- call JavaScript libraries -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+
+   <!-- based on w3schools.com PHP - AJAX and MySQL tutorial -> https://www.w3schools.com/php/php_ajax_database.asp -->
+
+   <script>
+    // receive user input from HTML page
+    function showUser(str) {
+      if (str=="") {
+        document.getElementById("txtHint").innerHTML="";
+        return;
+      }
+
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+      } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+          document.getElementById("txtHint").innerHTML=this.responseText;
+        }
+      }
+
+      // opens PHP file that queries the SQL database
+      // q is added to the URL, which contains the user's requested content of the dropdown list
+      // sends the request (user response) to the server
+      xmlhttp.open("GET","cPanel_mySQL_connect.php?q="+str,true);
+      xmlhttp.send();
+    }
+  </script>
+</head>
+<body>
+
+<form>
+  <!-- dropdown list listing different parameters -->
+  <!-- value corresponds to unique ID in SQL database -->
+  <select name="users" onchange="showUser(this.value)">
+    <option value="">Select a parameter:</option>
+    <option value="ELEV">Elevation</option>
+    <option value="PRECIP">Precipitation</option>
+    <option value="TEMP">Temperature</option>
+    <option value="PH">pH</option>
+    <option value="CONDUCTIVITY">Conductivity</option>
+    <option value="TURBIDITY_CORR">Turbidity</option>
+    <option value="CHLOROPHYLL">Chlorophyll</option>
+    <option value="DO">Dissolved Oxygen</option>
+    <option value="MICROCYSTIN_PROB">Microcystin Probability</option>
+    <option value="GEOSMIN_PROB">Geosmin Probability</option>
+    <option value="CYANO">Cyanobacteria</option>
+  </select>
+</form>
+<br>
+<div id="txtHint"><b>Parameter data will be listed here...</b></div>
+
+</body>
+</html>
