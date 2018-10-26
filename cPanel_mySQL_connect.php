@@ -42,34 +42,25 @@ if ($conn->connect_error) {
 echo "Connected successfully </br>";
 
 //select parameter with the ID number matching the value of the parameter the user chose from the dropdown list
-$sql = "SELECT '". $q ."' FROM RealTimeData";
+$sql = "SELECT ". $q ." FROM RealTimeData";
 $result = $conn->query($sql);
 
+$output = array();
 // resulting table of data queried is returned to the HTML page
 if ($result->num_rows > 0) {
   // output data of each row
     // while($row = $result->fetch_assoc()) {
     //     echo "Date: " . $row["DATE"]. " - Value: " . $row[". $ q ."]. "<br>";
     // }
-  echo "<table>
-    <tr>
-    <th>Values</th>
-    </tr>";
-  // create table rows for each data record for the selected parameter
   // adapted from https://stackoverflow.com/questions/2970936/how-to-echo-out-table-rows-from-the-db-php
     while($row = $result->fetch_assoc()) {
-      echo "<tr>";
-      foreach($row as $field) {
-       echo "<td>" . htmlspecialchars($field) . "</td>";
-      }
-      echo "</tr>";
+      $date = $row[$q];
+      $newdate = \DateTime($date);
+      $output[] = $newdate->format('m/d/Y');
   }
-  echo "</table>";
+  echo json_encode($output);
 } else {
   echo "0 results";
 }
 
 $conn->close();
-?>
-</body>
-</html>
