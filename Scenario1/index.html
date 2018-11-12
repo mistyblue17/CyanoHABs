@@ -11,15 +11,21 @@
     <title>DiscoverCheney</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
-    <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-    <!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46265465-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46265465-4');
+      gtag('config', 'UA-46265465-8');
+    </script>
 
     <!-- load script libraries -->
     <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script> -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -71,7 +77,7 @@
 </head>
 
 <body>
-Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenario2">Scenario 2      </a><a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenario3">Scenario 3      </a><a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenario4">Scenario 4      </a>
+Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/Scenario2">Scenario 2      </a><a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/Scenario3">Scenario 3      </a><a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/Scenario4">Scenario 4      </a>
 <script>
   $(function() {
     /**
@@ -179,6 +185,22 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
             legend: {
                 enabled: false
             },
+            tooltip: {
+                positioner: function() {
+                    return {
+                        x: this.chart.chartWidth - this.label.width - 35, // right aligned
+                        y: 5
+                    };
+                    relativeTo: 'Chart1'
+                },
+                shadow: true,
+                borderWidth: 1,
+                backgroundColor: 'rgba(255,255,255,0.8)',
+                pointFormat: '<b>{point.y}</b><br/>',
+                valueSuffix: ' ft<sup>3</sup>/s',
+                valueDecimals: 1,
+                padding: 4
+            },
             series: [{
                 name: 'Chlorophyll',
                 data: data,
@@ -229,6 +251,22 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
               credits: {
                   enabled: false
               },
+              tooltip: {
+                  positioner: function() {
+                      return {
+                          x: this.chart.chartWidth - this.label.width - 35, // right aligned
+                          y: 5
+                      };
+                      relativeTo: 'Chart2'
+                  },
+                  shadow: true,
+                  borderWidth: 1,
+                  backgroundColor: 'rgba(255,255,255,0.8)',
+                  pointFormat: '<b>{point.y}</b><br/>',
+                  valueSuffix: ' ft<sup>3</sup>/s',
+                  valueDecimals: 1,
+                  padding: 4
+              },
               series: [{
                   name: 'Water Elevation',
                   data: data,
@@ -238,7 +276,7 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
           });
         })
 
-          $.getJSON("UTC_PRECIP_2012.json").done(function(rawData) {
+          $.getJSON("UTC_NOAA_PRECIP_2012.json").done(function(rawData) {
               var data = []
               $.each(rawData, function(index, item) {
                   data.push([Date.UTC(item[0],item[1],item[2],item[3],item[4]),item[5]])
@@ -248,7 +286,7 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
                       zoomType: 'x'
                   },
                   title: {
-                      text: 'Precipitation'
+                      text: 'Average Daily Precipitation (NOAA)'
                   },
                   xAxis: {
                       type: 'datetime',
@@ -267,7 +305,7 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
                   },
                   yAxis: {
                       title: {
-                          text: 'inches',
+                          text: 'mm',
                           style: {
                               fontSize: '11px'
                           },
@@ -278,6 +316,22 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
                   },
                   legend: {
                       enabled: false
+                  },
+                  tooltip: {
+                      positioner: function() {
+                          return {
+                              x: this.chart.chartWidth - this.label.width - 35, // right aligned
+                              y: 5
+                          };
+                          relativeTo: 'Chart3'
+                      },
+                      shadow: true,
+                      borderWidth: 1,
+                      backgroundColor: 'rgba(255,255,255,0.8)',
+                      pointFormat: '<b>{point.y}</b><br/>',
+                      valueSuffix: ' ft<sup>3</sup>/s',
+                      valueDecimals: 1,
+                      padding: 4
                   },
                   series: [{
                       name: 'Precipitation',
@@ -332,6 +386,22 @@ Scenario 1     <a href="http://interactiveviz.dept.ku.edu/DiscoverCheney/Scenari
                     },
                     legend: {
                         enabled: false
+                    },
+                    tooltip: {
+                        positioner: function() {
+                            return {
+                                x: this.chart.chartWidth - this.label.width - 35, // right aligned
+                                y: 5
+                            };
+                            relativeTo: 'Chart4'
+                        },
+                        shadow: true,
+                        borderWidth: 1,
+                        backgroundColor: 'rgba(255,255,255,0.8)',
+                        pointFormat: '<b>{point.y}</b><br/>',
+                        valueSuffix: ' ft<sup>3</sup>/s',
+                        valueDecimals: 1,
+                        padding: 4
                     },
                     series: [{
                         name: 'Temperature',
