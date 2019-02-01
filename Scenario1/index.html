@@ -144,7 +144,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
         }
     };
 
-    $.getJSON("UTC_CHL_2012.json").done(function(rawData) {
+    $.getJSON("UTC_CYANO_2012.json").done(function(rawData) {
         var data = []
         $.each(rawData, function(index, item) {
             data.push([Date.UTC(item[0],item[1],item[2],item[3],item[4]),item[5]])
@@ -154,7 +154,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
                 zoomType: 'x'
             },
             title: {
-                text: 'Chlorophyll'
+                text: 'Cyanobacteria'
             },
             xAxis: {
                 type: 'datetime',
@@ -173,7 +173,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
             },
             yAxis: {
                 title: {
-                    text: 'ug/L',
+                    text: 'cells/mL',
                     style: {
                         fontSize: '11px'
                     },
@@ -197,12 +197,12 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
                 borderWidth: 1,
                 backgroundColor: 'rgba(255,255,255,0.8)',
                 pointFormat: '<b>{point.y}</b><br/>',
-                valueSuffix: ' ft<sup>3</sup>/s',
+                valueSuffix: ' cells/mL',
                 valueDecimals: 1,
                 padding: 4
             },
             series: [{
-                name: 'Chlorophyll',
+                name: 'Cyanobacteria',
                 data: data,
                 lineWidth: 1,
                 color: '#7c2f8e'  // purple
@@ -263,7 +263,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
                   borderWidth: 1,
                   backgroundColor: 'rgba(255,255,255,0.8)',
                   pointFormat: '<b>{point.y}</b><br/>',
-                  valueSuffix: ' ft<sup>3</sup>/s',
+                  valueSuffix: ' ft',
                   valueDecimals: 1,
                   padding: 4
               },
@@ -305,7 +305,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
                   },
                   yAxis: {
                       title: {
-                          text: 'mm',
+                          text: 'millimeters',
                           style: {
                               fontSize: '11px'
                           },
@@ -329,7 +329,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
                       borderWidth: 1,
                       backgroundColor: 'rgba(255,255,255,0.8)',
                       pointFormat: '<b>{point.y}</b><br/>',
-                      valueSuffix: ' ft<sup>3</sup>/s',
+                      valueSuffix: ' mm',
                       valueDecimals: 1,
                       padding: 4
                   },
@@ -399,7 +399,7 @@ Scenario 1     <a href="https://interactiveviz.dept.ku.edu/DiscoverHABs/Cheney/S
                         borderWidth: 1,
                         backgroundColor: 'rgba(255,255,255,0.8)',
                         pointFormat: '<b>{point.y}</b><br/>',
-                        valueSuffix: ' ft<sup>3</sup>/s',
+                        valueSuffix: ' C',
                         valueDecimals: 1,
                         padding: 4
                     },

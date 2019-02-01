@@ -199,7 +199,7 @@
                 borderWidth: 1,
                 backgroundColor: 'rgba(255,255,255,0.8)',
                 pointFormat: '<b>{point.y}</b><br/>',
-                valueSuffix: ' ft<sup>3</sup>/s',
+                valueSuffix: ' cells/mL',
                 valueDecimals: 1,
                 padding: 4
             },
@@ -241,7 +241,7 @@
               },
               yAxis: {
                   title: {
-                      text: 'probability',
+                      text: '',
                       style: {
                           fontSize: '11px'
                       },
@@ -265,12 +265,12 @@
                   borderWidth: 1,
                   backgroundColor: 'rgba(255,255,255,0.8)',
                   pointFormat: '<b>{point.y}</b><br/>',
-                  valueSuffix: ' ft<sup>3</sup>/s',
+                  valueSuffix: '',
                   valueDecimals: 1,
                   padding: 4
               },
               series: [{
-                  name: 'Geosmin Probability',
+                  name: 'Geosmin',
                   data: data,
                   lineWidth: 1,
                   color: '#7c2f8e'  // purple
@@ -278,7 +278,7 @@
           });
         })
 
-          $.getJSON("UTC_NOAA_PRECIP_2012.json").done(function(rawData) {
+          $.getJSON("UTC_N_2012.json").done(function(rawData) {
               var data = []
               $.each(rawData, function(index, item) {
                   data.push([Date.UTC(item[0],item[1],item[2],item[3],item[4]),item[5]])
@@ -288,7 +288,7 @@
                       zoomType: 'x'
                   },
                   title: {
-                      text: 'Average Daily Precipitation (NOAA)'
+                      text: 'Total Nitrogen'
                   },
                   xAxis: {
                       type: 'datetime',
@@ -307,7 +307,7 @@
                   },
                   yAxis: {
                       title: {
-                          text: 'mm',
+                          text: 'mg/L',
                           style: {
                               fontSize: '11px'
                           },
@@ -331,12 +331,12 @@
                       borderWidth: 1,
                       backgroundColor: 'rgba(255,255,255,0.8)',
                       pointFormat: '<b>{point.y}</b><br/>',
-                      valueSuffix: ' ft<sup>3</sup>/s',
+                      valueSuffix: ' mg/L',
                       valueDecimals: 1,
                       padding: 4
                   },
                   series: [{
-                      name: 'Precipitation',
+                      name: 'Total Nitrogen',
                       data: data,
                       lineWidth: 1,
                       color: '#7c2f8e'  // purple
@@ -344,14 +344,14 @@
               });
             })
 
-            $.getJSON("UTC_T_2012.json").done(function(rawData) {
+            $.getJSON("UTC_P_2012.json").done(function(rawData) {
                 var data = []
                 $.each(rawData, function(index, item) {
                     data.push([Date.UTC(item[0],item[1],item[2],item[3],item[4]),item[5]])
                 })
                 Highcharts.chart('Chart4', {
                     title: {
-                        text: 'Temperature'
+                        text: 'Total Phosphorus'
                     },
                     chart: {
                         zoomType: 'x'
@@ -380,7 +380,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'deg C',
+                            text: 'mg/L',
                             style: {
                                 fontSize: '12px'
                             },
@@ -401,20 +401,20 @@
                         borderWidth: 1,
                         backgroundColor: 'rgba(255,255,255,0.8)',
                         pointFormat: '<b>{point.y}</b><br/>',
-                        valueSuffix: ' ft<sup>3</sup>/s',
+                        valueSuffix: ' mg/L',
                         valueDecimals: 1,
                         padding: 4
                     },
                     series: [{
-                        name: 'Temperature',
+                        name: 'Total Phosphorus',
                         data: data,
                         lineWidth: 1,
                         color: '#7c2f8e'  // purple
                     }],
                 });
               })
-  });
-</script>
+    });
+    </script>
 
 </body>
 </html>
